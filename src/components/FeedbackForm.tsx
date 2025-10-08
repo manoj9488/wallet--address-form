@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import StarRating from "./StarRating";
 
 type FormData = {
   fullName: string;
@@ -178,25 +179,16 @@ const FeedbackForm = () => {
                 Overall experience rating:{" "}
                 <span className="text-red-500">*</span>
               </label>
-              <div className="flex space-x-4">
-                {[1, 2, 3, 4, 5].map((num) => (
-                  <label
-                    key={num}
-                    className="inline-flex items-center space-x-2 cursor-pointer"
-                  >
-                    <input
-                      type="radio"
-                      name="experienceRating"
-                      value={num.toString()}
-                      checked={formData.experienceRating === num.toString()}
-                      onChange={handleInputChange}
-                      required
-                      className="w-4 h-4 text-blue-600 focus:ring-blue-500"
-                    />
-                    <span className="text-gray-700 font-medium">{num}</span>
-                  </label>
-                ))}
-              </div>
+              <StarRating
+                totalStars={5}
+                initialRating={parseInt(formData.experienceRating, 10)}
+                onChange={(rating) =>
+                  setFormData((prev) => ({
+                    ...prev,
+                    experienceRating: rating.toString(),
+                  }))
+                }
+              />
             </div>
           </div>
 
