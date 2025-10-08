@@ -12,12 +12,12 @@ type FormData = {
 
 const FeedbackForm = () => {
   const [formData, setFormData] = useState<FormData>({
-    fullName: "manoj",
-    organization: "inkyank",
-    role: "developer",
+    fullName: "",
+    organization: "",
+    role: "",
     email: "@gmail.com",
-    walletAddress: "dgadfwsadhaswnjdgwhduqwhdiuhqwderhwdhwjk",
-    experienceRating: "5",
+    walletAddress: "",
+    experienceRating: "1",
   });
 
   const [submitting, setSubmitting] = useState(false);
@@ -42,8 +42,7 @@ const FeedbackForm = () => {
     e.preventDefault();
     setSubmitting(true);
     setSubmitResult("");
-
-    const endpoint = "https://sheetdb.io/api/v1/quv73you8ipiz";
+    const endpoint = import.meta.env.VITE_SHEETDB_API_ENDPOINT;
 
     const payload = {
       fullName: formData.fullName,
